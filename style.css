@@ -27,18 +27,38 @@ body {
   border-radius: 5px;
 }
 
+/* Display */
 .calculator-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  border: 3px solid black;
+}
+
+.calculator-display .equation {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  height: 50px;
   width: 100%;
-  height: 100px;
-  font: 50px "Orbitron", sans-serif;
-  background-color: white;
-  border: 2px solid black;
-  padding-right: 10px;
+  font: 20px "Orbitron", sans-serif;
+  padding-right: 20px;
 }
 
+.calculator-display .input {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100px;
+  font: 50px "Orbitron", sans-serif;
+  width: 100%;
+  padding-right: 15px;
+}
+
+/* Buttons */
 .calculator-buttons {
   display: flex;
   flex-wrap: wrap;
