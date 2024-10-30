@@ -75,6 +75,12 @@ button {
   border-radius: 5px;
 }
 
+button.disabled {
+  pointer-events: none;
+  transition: none;
+  opacity: 0.85;
+}
+
 button.control {
   background-color: rgb(199, 196, 196);
   transition: filter 0.1s;

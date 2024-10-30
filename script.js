@@ -3,28 +3,20 @@ let b = 0;
 let result = 0;
 let operator = "";
 
-function operate(num1, num2, operator) {
-  switch (operator) {
-    case "+":
-      return (result = num1 + num2);
-    case "-":
-      return (result = num1 - num2);
-    case "*":
-      return (result = num1 * num2);
-    case "/":
-      return (result = num1 / num2);
-    default:
-      return NaN;
-  }
-}
-
 const buttons = document.querySelectorAll("button");
 const equationDisplay = document.querySelector(".equation");
 const inputDisplay = document.querySelector(".input");
 
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    handleInput(e.target.textContent);
+  });
+});
+
 function handleInput(input) {
   switch (input) {
     case "AC":
+      enableButtons();
       a = 0;
       b = 0;
       operator = "";
@@ -105,9 +97,38 @@ function handleInput(input) {
   }
 }
 
-buttons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    console.log(e.target.textContent);
-    handleInput(e.target.textContent);
+function operate(num1, num2, operator) {
+  switch (operator) {
+    case "+":
+      return (result = num1 + num2);
+    case "-":
+      return (result = num1 - num2);
+    case "*":
+      return (result = num1 * num2);
+    case "/":
+      if (b === 0) {
+        result = "BAD!";
+        disableButtons();
+      } else return (result = num1 / num2);
+    default:
+      return NaN;
+  }
+}
+
+function disableButtons() {
+  buttons.forEach((button) => {
+    if (button.textContent !== "AC") {
+      button.classList.add("disabled");
+      button.disabled = true;
+    }
   });
-});
+}
+
+function enableButtons() {
+  buttons.forEach((button) => {
+    if (button.textContent !== "AC") {
+      button.classList.remove("disabled");
+      button.disabled = false;
+    }
+  });
+}
